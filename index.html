@@ -1,25 +1,209 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Wrevvy</title>
-<style>
-  body { margin:0; min-height:100vh; display:grid; place-items:center; background:#0a051a;
-         font-family:ui-rounded, -apple-system, system-ui, sans-serif; color:#e8e6f0; text-align:center; }
-  main { padding:2rem; }
-  h1 { font-size:2.6rem; font-weight:900; letter-spacing:.04em; color:#fff;
-       text-shadow:0 0 14px rgba(51,255,242,.55); margin:0 0 .4rem; }
-  p { color:#9a94b0; margin:.3rem 0 1.6rem; }
-  nav a { color:#33fff2; text-decoration:none; margin:0 .8rem; font-size:.95rem; }
-  nav a:hover, nav a:focus-visible { text-decoration:underline; }
-</style>
+<title>Wrevvy — neon arcade racer for Apple Watch</title>
+<meta name="description" content="A neon-soaked endless racer built for your wrist. Steer with the Digital Crown, dodge traffic, chain near-misses. No ads, no accounts, fully offline. Available now on the App Store.">
+<meta property="og:title" content="Wrevvy — neon arcade racer for Apple Watch">
+<meta property="og:description" content="One glowing road. Endless traffic. Don't crash. Steer with the Digital Crown — no ads, no accounts, fully offline.">
+<meta property="og:image" content="https://wrevvy.com/assets/icon-1024.png">
+<meta property="og:url" content="https://wrevvy.com/">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230A051A'/%3E%3Ctext x='32' y='44' font-family='Verdana,sans-serif' font-weight='bold' font-size='34' fill='%2333FFF2' text-anchor='middle'%3EW%3C/text%3E%3C/svg%3E">
+<link rel="apple-touch-icon" href="/assets/icon-1024.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Audiowide&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/styles.css?v=4">
 </head>
 <body>
-<main>
-  <h1>WREVVY</h1>
-  <p>Coming soon to Apple&nbsp;Watch.</p>
-  <nav><a href="privacy.html">Privacy</a><a href="support.html">Support</a></nav>
-</main>
+
+<nav class="nav">
+  <a class="wordmark" href="/">WREVVY</a>
+  <div class="nav-links">
+    <a class="hide-mobile" href="#how">How it plays</a>
+    <a class="hide-mobile" href="#nononsense">No nonsense</a>
+    <a href="/support">Support</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <canvas id="road" aria-hidden="true"></canvas>
+  <div class="hero-vignette" aria-hidden="true"></div>
+
+  <div class="hero-grid">
+    <div class="hero-copy">
+      <p class="eyebrow">An Apple Watch arcade racer</p>
+      <h1><span class="h1-road">One glowing road.</span><br>
+          Endless traffic.<br>
+          <span class="h1-crash">Don't crash.</span></h1>
+      <p class="hero-sub">Wrevvy is a neon-soaked endless racer built for your wrist.
+        <strong>Twist the Digital Crown</strong> to weave through traffic, chain
+        near-misses, and outrun a road that never stops.</p>
+      <a class="pill pill-link" href="https://apps.apple.com/us/app/wrevvy/id6791344410"
+         target="_blank" rel="noopener" title="Get Wrevvy on the App Store">DOWNLOAD ON THE APP&nbsp;STORE</a>
+      <p class="cta-note">Free <span class="dot">·</span> No ads <span class="dot">·</span> watchOS&nbsp;11+ <span class="dot">·</span> Series&nbsp;9 / Ultra&nbsp;2 and newer</p>
+    </div>
+
+    <div class="hero-watch">
+      <div class="watch">
+        <div class="watch-crown" aria-hidden="true"></div>
+        <div class="watch-btn" aria-hidden="true"></div>
+        <div class="watch-screen">
+          <img src="/assets/wrevvy-title.png" alt="Wrevvy title screen on an Apple Watch: a glowing cyan WREVVY wordmark over a neon road, with a magenta START button." width="416" height="496">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <p class="scroll-hint" aria-hidden="true"><span class="crown-glyph"></span> Scroll to steer</p>
+</header>
+
+<section class="signals" aria-label="The game's color system">
+  <div class="signals-inner">
+    <span class="signal"><i class="s-cyan"></i> Road edges</span>
+    <span class="signal"><i class="s-magenta"></i> Center line</span>
+    <span class="signal"><i class="s-lime"></i> Your car</span>
+    <span class="signal"><i class="s-gold"></i> Coins</span>
+    <span class="signal"><i class="s-red"></i> Traffic</span>
+    <p class="signals-rule">Five neon signals, one legibility rule: <em>traffic red and coin gold never change</em> — whatever color you drive, whatever biome you're in, the road always reads.</p>
+  </div>
+</section>
+
+<section class="section" id="how">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">How it plays</p>
+      <h2>The Crown is the wheel.</h2>
+      <p>No tapping, no fumbling, no second hand. Turn the Digital Crown and your car
+        slides across the road — <strong>one finger, pure steering</strong>. The road is
+        procedurally generated and endless: it narrows and speeds up the longer you
+        survive, so every run ends in a heroic wreck and a "one more go."</p>
+    </div>
+    <div class="modes">
+      <article class="mode m-classic">
+        <h3>CLASSIC</h3>
+        <p>The endless run. Dodge the red cars, scoop the gold coins, survive the
+          squeeze. How far can you get?</p>
+        <span class="mode-tag">High score saved on-wrist</span>
+      </article>
+      <article class="mode m-daily">
+        <h3>DAILY</h3>
+        <p>One shared course for everyone, seeded from the date and reset at midnight.
+          Same road, same traffic — beat your friends fair.</p>
+        <span class="mode-tag">Today's best, every day</span>
+      </article>
+      <article class="mode m-zen">
+        <h3>ZEN</h3>
+        <p>No crashing. Traffic ghosts through you, the edges nudge you back on the
+          tarmac. Cruise, collect, tap to end.</p>
+        <span class="mode-tag">Tap the screen to finish</span>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="depth" style="padding-top: 0;">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">The depth</p>
+      <h2>Small screen. Deep run.</h2>
+      <p>Everything on the road earns, saves, or threatens — nothing is decoration.</p>
+    </div>
+    <div class="features">
+      <article class="feature">
+        <h3>Near-miss combos</h3>
+        <p>Thread close past a car to start a combo. Chain dodges for escalating bonus
+          points — hold it to ×5 for the celebration.</p>
+      </article>
+      <article class="feature">
+        <div class="pu-row" aria-hidden="true">
+          <span class="pu pu-shield">S</span>
+          <span class="pu pu-magnet">M</span>
+          <span class="pu pu-boost">2×</span>
+        </div>
+        <h3>Power-ups</h3>
+        <p>A shield that soaks one hit, a magnet that vacuums nearby coins, and a 2×
+          boost that doubles your distance score.</p>
+      </article>
+      <article class="feature">
+        <h3>Spin-out second chance</h3>
+        <p>Your first slip each run spins you out and slows you down instead of ending
+          it. The next one is fatal.</p>
+      </article>
+      <article class="feature">
+        <h3>Weavers</h3>
+        <p>Some traffic sways across the lanes as it comes at you — and it happens more
+          often the deeper you drive.</p>
+      </article>
+      <article class="feature">
+        <h3>The garage</h3>
+        <p>Every coin you've ever grabbed counts. Lifetime totals unlock new car
+          colors:</p>
+        <div class="garage-chips">
+          <span class="chip"><i style="background:#8CFF59"></i> LIME <span class="cost">free</span></span>
+          <span class="chip"><i style="background:#33FFF2"></i> CYAN <span class="cost"><b>150</b></span></span>
+          <span class="chip"><i style="background:#FF40D9"></i> MAGENTA <span class="cost"><b>400</b></span></span>
+          <span class="chip"><i style="background:#FFE640"></i> GOLD <span class="cost"><b>900</b></span></span>
+          <span class="chip"><i style="background:#F2FAFF"></i> GHOST <span class="cost"><b>2000</b></span></span>
+        </div>
+      </article>
+      <article class="feature">
+        <h3>Feel it, hear it</h3>
+        <p>Haptics tick on every near-miss, thump on every crash. Optional synth blips
+          for coins, power-ups, and new bests — or play silent.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="biomes" aria-label="Distance biomes">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">Distance biomes</p>
+      <h2>Drive far enough and the night changes.</h2>
+      <p>Every 1,500 units the road crossfades into a new neon mood. These are the
+        game's actual palettes.</p>
+    </div>
+    <div class="biome-band">
+      <div class="biome b-sunset">
+        <h3>SUNSET</h3>
+        <p>Where every run begins. Cyan edges, magenta line.</p>
+      </div>
+      <div class="biome b-midnight">
+        <h3>MIDNIGHT</h3>
+        <p>Deep-night blue. Ice edges, violet line.</p>
+      </div>
+      <div class="biome b-dawn">
+        <h3>DAWN</h3>
+        <p>Plum into amber. Aqua edges, hot-pink line.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="nononsense" id="nononsense">
+  <p class="eyebrow" style="margin-bottom: 26px;">No nonsense</p>
+  <p class="big">No ads. No accounts. No tracking. <span class="zap">No network.</span></p>
+  <p>Wrevvy runs entirely on your Apple Watch and never sends your data anywhere.
+    Your scores, your stats, your garage — they live on your wrist and nowhere else.</p>
+</section>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <a class="wordmark" href="/">WREVVY</a>
+    <div class="footer-links">
+      <a href="https://apps.apple.com/us/app/wrevvy/id6791344410" target="_blank" rel="noopener">App Store</a>
+      <a href="/support">Support</a>
+      <a href="/privacy">Privacy</a>
+      <a href="mailto:support@satoru.ink">Contact</a>
+    </div>
+    <p class="footer-note">© 2026 Satoru Labs. Built natively with SwiftUI for watchOS.
+      Apple Watch and App Store are trademarks of Apple Inc.</p>
+  </div>
+</footer>
+
+<script src="/road.js?v=4" defer></script>
 </body>
 </html>
