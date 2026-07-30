@@ -60,14 +60,27 @@
   <p class="scroll-hint" aria-hidden="true"><span class="crown-glyph"></span> Scroll to steer</p>
 </header>
 
-<section class="signals" aria-label="The game's color system">
+<section class="signals" id="signals" aria-label="The game's color system">
   <div class="signals-inner">
     <span class="signal"><i class="s-cyan"></i> Road edges</span>
     <span class="signal"><i class="s-magenta"></i> Center line</span>
     <span class="signal"><i class="s-lime"></i> Your car</span>
     <span class="signal"><i class="s-gold"></i> Coins</span>
     <span class="signal"><i class="s-red"></i> Traffic</span>
-    <p class="signals-rule">Five neon signals, one legibility rule: <em>traffic red and coin gold never change</em> — whatever color you drive, whatever biome you're in, the road always reads.</p>
+  </div>
+</section>
+
+<!-- Mobile-only home for the watch mockup (styles.css shows exactly one of
+     .hero-watch / .watch-mobile per breakpoint): under 860px the hero stacks and
+     the watch would cover the live road simulation, so it lives down here under
+     the signals legend instead. Desktop never renders this block. -->
+<section class="watch-mobile" id="watch-home">
+  <div class="watch">
+    <div class="watch-crown" aria-hidden="true"></div>
+    <div class="watch-btn" aria-hidden="true"></div>
+    <div class="watch-screen">
+      <img src="/assets/wrevvy-title.png" alt="Wrevvy title screen on an Apple Watch: a glowing cyan WREVVY wordmark over a neon road, with a magenta START button." width="416" height="496">
+    </div>
   </div>
 </section>
 

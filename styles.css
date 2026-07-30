@@ -196,6 +196,16 @@ img { max-width: 100%; display: block; }
 }
 .cta-note .dot { color: var(--gold); }
 
+/* Mobile-only home for the watch mockup (markup after the signals legend):
+   desktop never shows it; under 860px it replaces .hero-watch so the hero's
+   live road simulation stays unobstructed. */
+.watch-mobile {
+  display: none;
+  justify-content: center;
+  padding: 56px 24px 8px;
+  filter: drop-shadow(0 24px 60px rgba(0, 0, 0, 0.6));
+}
+
 /* watch mockup */
 .hero-watch {
   position: relative;
@@ -317,15 +327,6 @@ img { max-width: 100%; display: block; }
 .signal i.s-lime    { background: var(--lime);    box-shadow: 0 0 10px var(--lime); }
 .signal i.s-gold    { background: var(--gold);    box-shadow: 0 0 10px var(--gold); }
 .signal i.s-red     { background: var(--red);     box-shadow: 0 0 10px var(--red); }
-.signals-rule {
-  flex-basis: 100%;
-  text-align: center;
-  font-size: 0.8rem;
-  color: var(--muted);
-  font-weight: 300;
-  letter-spacing: 0.02em;
-}
-.signals-rule em { color: var(--text); font-style: normal; font-weight: 500; }
 
 /* ---------- sections ---------- */
 
@@ -602,7 +603,8 @@ img { max-width: 100%; display: block; }
   }
   .eyebrow::before { display: none; }
   .hero-sub { margin-left: auto; margin-right: auto; }
-  .hero-watch { order: 2; }
+  .hero-watch { display: none; }
+  .watch-mobile { display: flex; }
   .hero-vignette {
     background: radial-gradient(ellipse 120% 60% at 50% 30%, rgba(10, 5, 26, 0.85) 0%, rgba(10, 5, 26, 0.4) 60%, transparent 100%);
   }
